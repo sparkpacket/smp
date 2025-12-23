@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GSMBETTMBAPSFC SMP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #0b0b0b;
+      color: white;
+      overflow: hidden;
+    }
+
+    .slideshow {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 60px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+
+    ul {
+      text-align: left;
+      font-size: 1.2rem;
+      max-width: 700px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      width: 220px;
+      margin-bottom: 30px;
+    }
+
+    .nav {
+      position: absolute;
+      bottom: 30px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    button {
+      background: #1f1f1f;
+      border: 2px solid #555;
+      color: white;
+      padding: 12px 24px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #333;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.8rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="slideshow">
+
+  <!-- Slide 1: Title -->
+  <div class="slide active">
+    <img src="logo.png" alt="SMP Logo" class="logo">
+    <h1>GSMBETTMBAPSFC SMP</h1>
+    <p>
+      The Genuinely Stupid Minecraft Bedrock Edition Thing That Might Be A Pyramid Scheme For Content.
+    </p>
+    <div class="footer">Use arrow keys or buttons to navigate</div>
+  </div>
+
+  <!-- Slide 2: What is this -->
+  <div class="slide">
+    <h2>What is this SMP?</h2>
+    <p>
+      This is a Minecraft Bedrock SMP built around chaos, collaboration,
+      content creation, and doing objectively terrible ideas for entertainment.
+      It is not actually a pyramid scheme. Probably.
+    </p>
+  </div>
+
+  <!-- Slide 3: What you can do -->
+  <div class="slide">
+    <h2>What You Can Do</h2>
+    <ul>
+      <li>Build ridiculous bases</li>
+      <li>Start fake corporations or real ones</li>
+      <li>Create lore (or completely ignore it)</li>
+      <li>Make videos, streams, or clips</li>
+      <li>Cause mild to extreme problems</li>
+    </ul>
+  </div>
+
+  <!-- Slide 4: The Vibe -->
+  <div class="slide">
+    <h2>The Vibe</h2>
+    <ul>
+      <li>Mostly vanilla gameplay</li>
+      <li>Light rules, heavy consequences</li>
+      <li>Content-first mindset</li>
+      <li>Jokes are encouraged</li>
+      <li>Breaking the server is discouraged (usually)</li>
+    </ul>
+  </div>
+
+  <!-- Slide 5: How to Join -->
+  <div class="slide">
+    <h2>How to Join</h2>
+    <p>
+      1. Be on Minecraft Bedrock Edition<br><br>
+      2. Be capable of basic communication<br><br>
+      3. Join the Discord / contact the owner<br><br>
+      4. Get whitelisted<br><br>
+      5. Regret your decisions
+    </p>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav">
+    <button onclick="prevSlide()">← Previous</button>
+    <button onclick="nextSlide()">Next →</button>
+  </div>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function showSlide(index) {
+    slides[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+  }
+
+  function nextSlide() {
+    showSlide(current + 1);
+  }
+
+  function prevSlide() {
+    showSlide(current - 1);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+</script>
+
+</body>
+</html>
