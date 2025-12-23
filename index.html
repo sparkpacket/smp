@@ -83,6 +83,11 @@
       display: flex;
       justify-content: space-between;
       padding: 0 40px;
+      pointer-events: none;
+    }
+
+    .nav button {
+      pointer-events: auto;
     }
 
     button {
@@ -98,15 +103,37 @@
       background: #333;
     }
 
+    .discord-btn {
+      margin-top: 30px;
+      font-size: 1.2rem;
+      padding: 14px 28px;
+      border-color: #5865F2;
+    }
+
+    .discord-btn:hover {
+      background: #5865F2;
+    }
+
     .footer {
       position: absolute;
       bottom: 10px;
       font-size: 0.8rem;
       opacity: 0.6;
     }
+
+    .music-control {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
   </style>
 </head>
 <body>
+
+<!-- Background Music -->
+<audio id="bgm" src="music.ogg" loop></audio>
 
 <div class="slideshow">
 
@@ -120,7 +147,7 @@
     <div class="footer">Use arrow keys or buttons to navigate</div>
   </div>
 
-  <!-- Slide 2: What is this -->
+  <!-- Slide 2 -->
   <div class="slide">
     <h2>What is this SMP?</h2>
     <p>
@@ -130,19 +157,19 @@
     </p>
   </div>
 
-  <!-- Slide 3: What you can do -->
+  <!-- Slide 3 -->
   <div class="slide">
     <h2>What You Can Do</h2>
     <ul>
       <li>Build ridiculous bases</li>
       <li>Start fake corporations or real ones</li>
-      <li>Create lore (or completely ignore it)</li>
+      <li>Create lore or delete lore</li>
       <li>Make videos, streams, or clips</li>
       <li>Cause mild to extreme problems</li>
     </ul>
   </div>
 
-  <!-- Slide 4: The Vibe -->
+  <!-- Slide 4 -->
   <div class="slide">
     <h2>The Vibe</h2>
     <ul>
@@ -150,26 +177,36 @@
       <li>Light rules, heavy consequences</li>
       <li>Content-first mindset</li>
       <li>Jokes are encouraged</li>
-      <li>Breaking the server is discouraged (usually)</li>
+      <li>Server survival not guaranteed</li>
     </ul>
   </div>
 
-  <!-- Slide 5: How to Join -->
+  <!-- Slide 5 -->
   <div class="slide">
     <h2>How to Join</h2>
     <p>
       1. Be on Minecraft Bedrock Edition<br><br>
       2. Be capable of basic communication<br><br>
-      3. Join the Discord / contact the owner<br><br>
+      3. Join the Discord<br><br>
       4. Get whitelisted<br><br>
       5. Regret your decisions
     </p>
+
+    <!-- Discord Invite Button -->
+    <a href="https://discord.gg/agVjyDSRfM" target="_blank">
+      <button class="discord-btn">Join the Discord</button>
+    </a>
   </div>
 
   <!-- Navigation -->
   <div class="nav">
     <button onclick="prevSlide()">← Previous</button>
     <button onclick="nextSlide()">Next →</button>
+  </div>
+
+  <!-- Music Control -->
+  <div class="music-control">
+    <button onclick="toggleMusic()">Toggle Music</button>
   </div>
 
 </div>
@@ -196,6 +233,29 @@
     if (e.key === 'ArrowRight') nextSlide();
     if (e.key === 'ArrowLeft') prevSlide();
   });
+
+  // Music handling (starts on first interaction because browsers)
+  const music = document.getElementById('bgm');
+  let musicStarted = false;
+
+  function startMusic() {
+    if (!musicStarted) {
+      music.volume = 0.5;
+      music.play().catch(() => {});
+      musicStarted = true;
+    }
+  }
+
+  function toggleMusic() {
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  }
+
+  document.addEventListener('click', startMusic);
+  document.addEventListener('keydown', startMusic);
 </script>
 
 </body>
